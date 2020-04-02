@@ -1,0 +1,3 @@
+rootProject.name='RetrofitClientApplication'
+include ':app'
+include ':retrofitlibrary'
