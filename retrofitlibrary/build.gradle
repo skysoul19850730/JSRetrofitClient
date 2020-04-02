@@ -42,3 +42,21 @@ dependencies {
 
     api "com.google.code.gson:gson:2.8.5"
 }
+
+apply plugin: 'maven'
+ext {
+    PUBLISH_GROUP_ID = 'com.skysoul.retrofitlibrary'// 包名
+    PUBLISH_ARTIFACT_ID = 'retrofitlibrary'// 组件名
+    PUBLISH_VERSION = android.defaultConfig.versionName// 版本号
+}
+uploadArchives {
+    repositories.mavenDeployer {
+        def mavenDirPath = file('\\Users\\shenqichao\\Desktop\\gitaars') // 本地存放目录(自行选择)，可放在gradle.properties文件中引用
+        repository(url:"file://${mavenDirPath.absolutePath}") // 必须双引号，单引号不会转义$
+        pom.project {
+            groupId project.PUBLISH_GROUP_ID // 可以随意取，一般取包名
+            artifactId project.PUBLISH_ARTIFACT_ID // 可以随意取，一般取库的名字
+            version project.PUBLISH_VERSION // 版本号
+        }
+    }
+}
